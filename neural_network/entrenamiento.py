@@ -1,8 +1,8 @@
 from funcionRelu import relu
 from capas import capa 
-from coste import mse
 import numpy as np
 
+W_temp = []
 # Funcion error cuadratico medio
 def mse(Ypredich, Yreal):
 
@@ -19,8 +19,8 @@ def entrenamiento(X,Y, red_neuronal, lr = 0.01):
   # Output guardara el resultado de cada capa
   # En la capa 1, el resultado es el valor de entrada
   output = [X]
+  for num_capa in range(len(red_neuronal)): 
 
-  for num_capa in range(len(red_neuronal)):
     z = output[-1] @ red_neuronal[num_capa].W + red_neuronal[num_capa].b
 
     a = red_neuronal[num_capa].funcion_act[0](z)
@@ -35,7 +35,6 @@ def entrenamiento(X,Y, red_neuronal, lr = 0.01):
 
   # Guardaremos el error de la capa en delta  
   delta = []
-
   for capa in back:
     # Backprop #delta
 
@@ -50,9 +49,8 @@ def entrenamiento(X,Y, red_neuronal, lr = 0.01):
       delta.append(x)
 
     W_temp = red_neuronal[capa].W.transpose()
-
     # Gradient Descent #
     red_neuronal[capa].b = red_neuronal[capa].b - np.mean(delta[-1], axis = 0, keepdims = True) * lr
     red_neuronal[capa].W = red_neuronal[capa].W - output[capa].transpose() @ delta[-1] * lr
-
+  print('fin epoch')
   return output[-1]

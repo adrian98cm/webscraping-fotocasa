@@ -2,8 +2,6 @@ import numpy as np
 import math
 import matplotlib.pyplot as plt
 
-rango = np.linspace(-10,10).reshape([50,1])
-
 def derivada_relu(x):
   x[x<=0] = 0
   x[x>0] = 1
