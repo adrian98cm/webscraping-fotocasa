@@ -7,7 +7,7 @@ import pandas
 
 filename = 'buildings_information.csv'
 
-data = pandas.read_csv(filename, header=0)
+data = pandas.read_csv(filename, header=0, encoding='latin1')
 
 
 
@@ -19,7 +19,7 @@ print (data.head(10))
 # El primer valor es el numero de columnas de la capa de entrada.
 
 # Lectura de pisos
-with open('buildings_information.csv', newline ='') as csvfile:
+with open('buildings_information.csv', newline ='', encoding='latin1') as csvfile:
   reader = csv.DictReader(csvfile)
   for row in reader:
     print(row)
