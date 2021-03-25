@@ -37,3 +37,15 @@ model.fit(X, Y, epochs=20, batch_size=10)
 predictions = model.predict(X)
 for i in range(20):
 	print('Valores %s => Precio estimado: %d (Precio de venta: %d)' % (X[i].tolist(), predictions[i], Y[i]))
+
+while (True):
+    print('Introduce los datos de tu piso')
+    habs = float(input("Habitaciones: "))
+    aseos = float(input("Aseos: "))
+    superficie = float(input("Superficie: "))
+    parking = float(input("Parkings: "))
+    colegios = float(input("Colegios: "))
+    precio = float(input("Precio Real: "))
+    piso = [[habs,aseos,superficie,parking,colegios]]
+    prediction = model.predict(piso)
+    print('Precio estimado: %d (Precio de venta: %d)' % (prediction, precio))
