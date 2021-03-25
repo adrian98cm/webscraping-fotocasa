@@ -18,8 +18,9 @@ Y = data[:,1]
 # print(Y)
 
 model = Sequential()
-model.add(Dense(12, input_dim=5, activation='relu'))
-model.add(Dense(8, activation='relu'))
+# Numero de capas, la ultima siempre tiene que ser 1, las funciones de activacion son relu, el primer numero es el numero de neuronas en la capa
+model.add(Dense(5, input_dim=5, activation='relu'))
+model.add(Dense(10, activation='relu'))
 model.add(Dense(1, activation='relu'))
 
 # Compile the keras model 
@@ -27,12 +28,12 @@ model.add(Dense(1, activation='relu'))
 # optimizer='sgd','rmsprop'
 # https://www.tensorflow.org/api_docs/python/tf/keras/Model
 
-model.compile(loss='mean_squared_logarithmic_error', optimizer='sgd', metrics=['mean_absolute_percentage_error'])
+model.compile(loss='mean_squared_logarithmic_error', optimizer='sgd', metrics=['mse','mae'])
 
 # fit the keras model on the dataset
-model.fit(X, Y, epochs=150, batch_size=10)
+model.fit(X, Y, epochs=20, batch_size=10)
 
 
 predictions = model.predict(X)
 for i in range(20):
-	print('%s => %d (expected %d)' % (X[i].tolist(), predictions[i], Y[i]))
+	print('Valores %s => Precio estimado: %d (Precio de venta: %d)' % (X[i].tolist(), predictions[i], Y[i]))
