@@ -9,8 +9,25 @@ def derivada_relu(x):
 
 relu = (
   lambda x: x * (x > 0),
-  lambda x:derivada_relu(x)
+  lambda x: derivada_relu(x)
   )
+
+def derivada_idem(x):
+  x[x<0] = -1
+  x[x==0] = 0
+  x[x>0] = 1
+  return x
+
+idem = (
+  lambda x: x,
+  lambda x: derivada_idem(x)
+  )
+
+sigmoid = (
+  lambda x:1 / (1 + np.exp(-x)),
+  lambda x:x * (1 - x)
+  )
+
 
 # datos_relu = relu[0](rango)
 # datos_relu_derivada = relu[1](rango)

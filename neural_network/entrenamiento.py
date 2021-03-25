@@ -14,7 +14,7 @@ def mse(Ypredich, Yreal):
   y = np.array(Ypredich) - np.array(Yreal)
   return (x,y)
 
-def entrenamiento(X,Y, red_neuronal, lr = 0.01):
+def entrenamiento(X,Y, red_neuronal, lr = 0.05):
 
   # Output guardara el resultado de cada capa
   # En la capa 1, el resultado es el valor de entrada
@@ -52,5 +52,5 @@ def entrenamiento(X,Y, red_neuronal, lr = 0.01):
     # Gradient Descent #
     red_neuronal[capa].b = red_neuronal[capa].b - np.mean(delta[-1], axis = 0, keepdims = True) * lr
     red_neuronal[capa].W = red_neuronal[capa].W - output[capa].transpose() @ delta[-1] * lr
-  print('fin epoch')
+    
   return output[-1]
